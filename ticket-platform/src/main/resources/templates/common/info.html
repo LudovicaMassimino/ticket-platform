@@ -47,19 +47,44 @@
         </div>
     </nav>
 
-    <div class="col-12 text-start">
-        <h1 class="p-4">Dettaglio ticket :</h1>
-        <div class="card">
-            <div class="card-body" th:each="ticket : ${ticket}">
-                <h5 class="card-title" th:text="${ticket.title}"></h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${ticket.body}">Card subtitle</h6>
-                <p class="card-text"></p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+    <main>
+
+        <div class="container">
+            <div class="row text-center mt-5 justify-content-start">
+
+                <!-- LEFT COL -->
+
+                <div class="col-8 text-start">
+                    <h1 class="p-4">Dettaglio ticket :</h1>
+                    <div class="card">
+                        <div class="card-body" th:each="ticket : ${ticket}">
+                            <section class="d-flex justify-content-between fs-2">
+                                <span class="card-title" th:text="${ticket.title}"></span>
+                                <span class="card-title" th:text="${ticket.user.username}"></span>
+                            </section>
+                            <p class="card-subtitle fs-6"  th:text="${ticket.ticket_date}"></p >
+
+                            <p class="card-text fs-3 mb-2 text-body-secondary" th:text="${ticket.body}">Card subtitle/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COL -->
+                 <div class="col-4 text-start">
+                    <h4 class="p-5">Note :</h4>
+                    <div class="card opacity-50">
+                        <div class="card-body">
+                            <ul>
+                                <li th:each="note: ${ticket.note}" th:text="${note.name}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
             </div>
         </div>
-        
-    </div>
+        </div>
+
+    </main>
 
     <script src="https://cdn.jsd
 		elivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

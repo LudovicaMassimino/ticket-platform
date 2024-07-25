@@ -13,10 +13,6 @@
             background: #23074d;
             background: linear-gradient(to right, #66ffb0, #090a5b);
         }
-
-        .btn-margin {
-            margin: 100px;
-        }
     </style>
 
 </head>
@@ -24,9 +20,8 @@
 <body>
     <header></header>
     <!-- navbar -->
-
     <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
-        <div class="container-fluid">
+        <div class="container-fluid my-o py-0">
             <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
                 <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px" height="120px" />
             </a>
@@ -36,31 +31,35 @@
             </button>
             <div class="nav justify-content-end collapse navbar-collapse" id="navbarHamburger">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/home}">Home</a>
+                    <li>
+                        <form class="d-flex ms-auto opacity-75" role="search">
+                            <input type="text" name="title" class="form-control me-2 bg-tertiary border-0 rounded"
+                                placeholder="Cerca per titolo" aria-label="Cerca per titolo">
+                            <button class="btn btn-outline-tertiary rounded text-white" type="submit">Vai</button>
+                        </form>
+                        <form class="d-flex my-2 ms-auto opacity-75" role="search">
+                            <input type="text" name="body" class="form-control me-2 bg-tertiary border-0 rounded"
+                                placeholder="Cerca per contenuto" aria-label="Cerca per contenuto">
+                            <button class="btn btn-outline-tertiary rounded text-white" type="submit">Vai</button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    </header>
 
-    <!-- main -->
-
-    <main>
-        <div class="container text-center col-5 py-5">
-            <section class="fs-2 py-5b">
-                <h1>Benvenuto nell'Assistenza Clienti di <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo"
-                        class="navbar-logo " width="350px" height="120px" /></h1>
-                <div class="btn-margin">
-                    <a th:href="@{|/ticket/admin|}" type="button"
-                        class="btn btn-primary p-3 rounded-pill mx-3 fs-4">ADMIN</a>
-                    <a th:href="@{|/admin|}" type="button"
-                        class="btn btn-success p-3 rounded-pill mx-3 fs-4">OPERATORE</a>
-                </div>
+    <div class="col-12 text-start">
+        <h1 class="p-4">Dettaglio ticket :</h1>
+        <div class="card">
+            <div class="card-body" th:each="ticket : ${ticket}">
+                <h5 class="card-title" th:text="${ticket.title}"></h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${ticket.body}">Card subtitle</h6>
+                <p class="card-text"></p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
         </div>
-    </main>
-
+        
+    </div>
 
     <script src="https://cdn.jsd
 		elivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

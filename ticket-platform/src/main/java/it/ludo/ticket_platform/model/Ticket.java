@@ -1,5 +1,7 @@
 package it.ludo.ticket_platform.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,28 +12,29 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ticket")
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false , length = 100)
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false , length = 800)
+    @Column(nullable = false)
     private String body;
+
+    @Column(nullable = false)
+    private LocalDateTime ticket_date;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "category:id" ,nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-     // aggiungere OneToMany da note?
 
     // getter e setter
 
@@ -73,5 +76,13 @@ public class Ticket {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public LocalDateTime getTicket_date() {
+        return ticket_date;
+    }
+
+    public void setTicket_date(LocalDateTime ticket_date) {
+        this.ticket_date = ticket_date;
     }
 }

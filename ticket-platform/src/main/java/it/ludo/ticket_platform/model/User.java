@@ -35,17 +35,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-     // aggiungere OneToMany da ticket?
-
     // getter e setter
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
     public Integer getId() {
         return id;
@@ -87,9 +77,11 @@ public class User {
         this.status = status;
     }
 
-    
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-
-
-
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }

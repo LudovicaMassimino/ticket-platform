@@ -9,24 +9,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
-    <title>Document</title>
+    <title>LISTA TICKET-HOME</title>
 
 </head>
 
-<body>
-
-
-    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
-</body>
-
-</html>
-
-<title>Assistenza Clienti</title>
-
 <style>
+    .navbar {
+        display: flex;
+        align-items: center;
+        height: 70px;
+    }
+
+
     .nav-bg {
         background: #23074d;
-        background: linear-gradient(to right, #66ffb0, #090a5b);
+        background: linear-gradient(to right, #5657a4, #090a5b);
     }
 </style>
 
@@ -95,18 +92,18 @@
 
                                 <td>
                                     <div class="d-flex justify-content-evenly">
-                                        <a class="btn  btn-outline-secondary opacity-75 p-3 icon-link icon-link-hover text-decoration-none  text-white"
+                                        <a class="btn opacity-75 p-3 icon-link icon-link-hover text-decoration-none  text-white"
                                             th:href="@{|/ticket/${ticket.id}|}">
-                                            <i class="bi bi-search" style="color: darkcyan;"></i>
+                                            <i class="bi bi-search" style="color: rgb(32, 198, 104);"></i>
                                         </a>
-                                        <a class="btn  btn-outline-warning opacity-75 p-3 icon-link icon-link-hover text-decoration-none  text-white"
+                                        <a class="btn opacity-75 p-3 icon-link icon-link-hover text-decoration-none  text-white"
                                             th:href="@{|/ticket/${ticket.id}/edit|}">
-                                            <i class="bi bi-pencil-fill" style="color: rgb(209, 161, 2);"></i>
+                                            <i class="bi bi-pencil-fill" style="color: rgb(249, 241, 7);"></i>
                                         </a>
 
-                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        <button type="button" class="btn" data-bs-toggle="modal"
                                             th:data-bs-target="'#deleteModal' + ${ticket.id}" data-id="${ticket.id}">
-                                            <i class="bi bi-trash" style="color: rgb(175, 0, 0);"></i>
+                                            <i class="bi bi-trash" style="color: rgb(255, 52, 52);"></i>
                                         </button>
                                     </div>
 

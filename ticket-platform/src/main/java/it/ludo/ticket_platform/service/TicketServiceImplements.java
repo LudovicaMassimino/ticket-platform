@@ -19,13 +19,13 @@ public class TicketServiceImplements implements TicketService {
 
     @Override
     public List<Ticket> findAll() {
-        // TODO Auto-generated method stub
+        
         return ticketRepo.findAll();
     }
 
     @Override
     public Optional<Ticket> findbyId(Integer id) {
-        // TODO Auto-generated method stub
+        
         return ticketRepo.findById(id)
 ;
     }

@@ -1,5 +1,6 @@
 package it.ludo.ticket_platform.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.ludo.ticket_platform.model.Note;
 import it.ludo.ticket_platform.model.Ticket;
+import it.ludo.ticket_platform.repository.NoteRepo;
 import it.ludo.ticket_platform.repository.TicketRepo;
 
 import org.springframework.ui.Model;
@@ -25,6 +28,9 @@ public class TicketController {
 
     @Autowired
     TicketRepo ticketRepo;
+
+    @Autowired
+    NoteRepo noteRepo;
 
     @GetMapping("/admin")
     public String index(Model model, @RequestParam(name = "title", required = false) String title,
@@ -57,7 +63,7 @@ public class TicketController {
     }
 
     @GetMapping("/{id}/edit")
-    public String showEditForm(@PathVariable("id") Integer id, Model model) {
+    public String getEditForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("ticket", ticketRepo.getReferenceById(id));
         model.addAttribute("status", Ticket.Status.values());
         return "/common/edit";
@@ -85,11 +91,32 @@ public class TicketController {
 
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") Integer id) {
-        // TODO: process POST request
 
         ticketRepo.deleteById(id);
 
         return "redirect:/ticket/admin";
+    }
+
+    @GetMapping("/{id}/createNote")
+    public String getCreateNote(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("note", new Note());
+        model.addAttribute("ticketId", id);
+        return "/common/createNote";
+    }
+
+    @PostMapping("/{id}/createNote")
+    public String createNote(@PathVariable("id") Integer id, @Valid Note note, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("ticketId", id);
+            return "/common/createNote";
+        }
+
+        Ticket ticket = ticketRepo.getReferenceById(id);
+        note.setTicket(ticket);
+        note.setNote_date(LocalDateTime.now());
+        noteRepo.save(note);
+
+        return "redirect:/ticket/" + id;
     }
 
 }

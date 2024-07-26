@@ -30,17 +30,17 @@ public class TicketRestController {
 
     @GetMapping("/index")
     public ResponseEntity<Payload<List<Ticket>>> getAll() {
-        List<Ticket> pizzaList = ticketService.findAll();
-        return ResponseEntity.ok(new Payload<List<Ticket>>(pizzaList, null, HttpStatus.OK));
+        List<Ticket> ticketList = ticketService.findAll();
+        return ResponseEntity.ok(new Payload<List<Ticket>>(ticketList, null, HttpStatus.OK));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Payload<Ticket>> getId(@PathVariable("id") Integer ticketId) {
 
-        Optional<Ticket> pizza = ticketService.findbyId(ticketId);
+        Optional<Ticket> ticket = ticketService.findbyId(ticketId);
 
-        if (pizza.isPresent()) {
-            return ResponseEntity.ok(new Payload<Ticket>(pizza.get(), null, HttpStatus.OK));
+        if (ticket.isPresent()) {
+            return ResponseEntity.ok(new Payload<Ticket>(ticket.get(), null, HttpStatus.OK));
 
         } else {
             return new ResponseEntity<Payload<Ticket>>(

@@ -8,9 +8,7 @@ public class Payload<T> {
     private String errorMessage;
     private HttpStatus status;
 
-    // ----------------------------
-    // ------ CONSTRUCTORS --------
-    // ----------------------------
+//    costruttori
 
     public Payload() {
     }
@@ -21,10 +19,8 @@ public class Payload<T> {
         this.status = status;
     }
 
-    // ----------------------------
-    // ----- GETTERS & SETTERS ----
-    // ----------------------------
-
+    // getter e setter
+    
     public T getPayload() {
         return payload;
     }

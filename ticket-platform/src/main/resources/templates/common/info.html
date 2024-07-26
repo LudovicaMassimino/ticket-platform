@@ -13,67 +13,76 @@
             background: #23074d;
             background: linear-gradient(to right, #66ffb0, #090a5b);
         }
+
+        .DA_FARE {
+            background-color: red;
+        }
+
+        .IN_CORSO {
+            background-color: rgb(188, 119, 0);
+        }
+
+        .COMPLETATO {
+            background-color: rgb(0, 123, 76);
+        }
     </style>
 
 </head>
 
 <body>
-    <header></header>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
-        <div class="container-fluid my-o py-0">
-            <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
-                <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px" height="120px" />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHamburger"
-                aria-controls="navbarHamburger" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="nav justify-content-end collapse navbar-collapse" id="navbarHamburger">
-                <ul class="navbar-nav">
-                    <li>
-                        <form class="d-flex ms-auto opacity-75" role="search">
-                            <input type="text" name="title" class="form-control me-2 bg-tertiary border-0 rounded"
-                                placeholder="Cerca per titolo" aria-label="Cerca per titolo">
-                            <button class="btn btn-outline-tertiary rounded text-white" type="submit">Vai</button>
-                        </form>
-                        <form class="d-flex my-2 ms-auto opacity-75" role="search">
-                            <input type="text" name="body" class="form-control me-2 bg-tertiary border-0 rounded"
-                                placeholder="Cerca per contenuto" aria-label="Cerca per contenuto">
-                            <button class="btn btn-outline-tertiary rounded text-white" type="submit">Vai</button>
-                    </li>
-                </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
+            <div class="container-fluid my-o py-0">
+                <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
+                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px"
+                        height="120px" />
+                </a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
+    <!-- main -->
 
     <main>
 
         <div class="container">
             <div class="row text-center mt-5 justify-content-start">
 
-                <!-- LEFT COL -->
+                <!-- col sx -->
 
                 <div class="col-8 text-start">
                     <h1 class="py-4">Dettaglio ticket :</h1>
                     <div class="card">
                         <div class="card-body" th:each="ticket : ${ticket}">
-                            <section class="d-flex justify-content-between fs-2">
-                                <span class="card-title" th:text="${ticket.title}"></span>
+                            <section class="d-flex justify-content-between align-items-center fs-2">
+                                <p class="mb-0">
+                                    <span class="card-title" th:text="${ticket.title}"></span>
+                                    <span class="card-title px-5 "> - </span>
+                                    <span class="fs-6" th:text="${ticket.category.name}"></span>
+                                </p>
                                 <span class="card-title" th:text="${ticket.user.username}"></span>
                             </section>
-                            <p class="card-subtitle fs-6"  th:text="${ticket.ticket_date}"></p >
+                            <p class="card-subtitle fs-6" th:text="${ticket.ticket_date}"></p>
 
-                            <p class="card-text fs-3 mb-2 text-body-secondary" th:text="${ticket.body}">Card subtitle/>
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="card-text  fs-3 mb-2 text-body-secondary" th:text="${ticket.body}">
+                                    </p>
+                                </div>
+                                <div class="col-2 d-flex justify-content-end align-items-center"
+                                    th:each="stato : ${ticket.status}">
+                                    <button class="btn" th:classappend="${ticket.status}"
+                                        th:text="${stato}">status</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                
-                 <!-- RIGHT COL -->
-                 <div class="p-3 col-4 text-start">
-                    <h4 class="py-4">Note :</h4>
-                    <div class="card opacity-75">
+                <!-- col dx -->
+                <div class="p-3 col-4 text-start">
+                    <h4 class="py-4 text-warning">Note :</h4>
+                    <div class="card opacity-50">
                         <div class="card-body" th:each="note: ${ticket.note}">
                             <ul>
                                 <li class="d-flex justify-content-between fs-6">
@@ -84,12 +93,11 @@
                             </ul>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
-        </div>
-
     </main>
+
 
     <script src="https://cdn.jsd
 		elivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

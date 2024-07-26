@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,14 +51,17 @@ public class Ticket {
     // @NotNull(message = "Campo Obbligatorio")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 
     // @NotNull(message = "Campo Obbligatorio")
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @JsonBackReference
     private Category category;
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Note> note;
 
     // GETTERS & SETTERS

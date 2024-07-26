@@ -2,6 +2,8 @@ package it.ludo.ticket_platform.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,6 +35,7 @@ public class User {
     private boolean status; // 0 = occupato , 1 = disponibile
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonBackReference
     private Set<Role> roles;
 
     // getter e setter

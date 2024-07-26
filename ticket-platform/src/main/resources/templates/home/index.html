@@ -9,13 +9,35 @@
     <title>Assistenza Clienti</title>
 
     <style>
+        .navbar {
+            display: flex;
+            align-items: center;
+            height: 70px;
+        }
+
+
         .nav-bg {
             background: #23074d;
-            background: linear-gradient(to right, #66ffb0, #090a5b);
+            background: linear-gradient(to right, #5657a4, #090a5b);
         }
 
         .btn-margin {
             margin: 100px;
+        }
+
+        .btn-admin {
+            color: #ffffff;
+            background-color: #090a5b;
+        }
+
+        .btn-operatore {
+            color: #ffffff;
+            background-color: #04D46A;
+        }
+
+        a.btn-admin,
+        a.btn-operatore {
+            text-decoration: none;
         }
     </style>
 
@@ -47,18 +69,18 @@
 
     <!-- main -->
 
-    <main>
-        <div class="container text-center col-5 py-5">
-            <section class="fs-2 py-5b">
-                <h1>Benvenuto nell'Assistenza Clienti di <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo"
-                        class="navbar-logo " width="350px" height="120px" /></h1>
-                <div class="btn-margin">
-                    <a th:href="@{|/ticket/admin|}" type="button"
-                        class="btn btn-primary p-3 rounded-pill mx-3 fs-4">ADMIN</a>
-                    <a th:href="@{|/admin|}" type="button"
-                        class="btn btn-success p-3 rounded-pill mx-3 fs-4">OPERATORE</a>
+    <main class="d-flex align-items-center justify-content-center" style="min-height: 125vh;">
+        <div class="container col-5 py-5">
+            <div class="fs-2 py-5b">
+                <div class="text-center">
+                    <h1>Benvenuto nell'Assistenza Clienti di <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo"
+                            class="navbar-logo " width="350px" height="120px" /></h1>
                 </div>
-            </section>
+                <div class="d-flex justify-content-center pt-5">
+                    <a th:href="@{|/ticket/admin|}" type="button" class="btn-admin p-3 rounded mx-3 fs-4">ADMIN</a>
+                    <a th:href="@{|/admin|}" type="button" class="btn-operatore p-3 rounded mx-3 fs-4">OPERATORE</a>
+                </div>
+            </div>
         </div>
     </main>
 

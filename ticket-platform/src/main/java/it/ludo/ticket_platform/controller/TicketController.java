@@ -5,6 +5,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
@@ -60,7 +62,31 @@ public class TicketController {
 
         model.addAttribute("list", ticketList);
 
-        return "/admin/home";
+        return "/admin/home_admin";
+    }
+
+    @GetMapping("/user")
+    public String getMyTickets(Model model, @RequestParam(name = "title", required = false) String title,
+            @RequestParam(name = "body", required = false) String body) {
+
+        List<Ticket> ticketList = new ArrayList<>();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        if (title == null && body == null) {
+
+            ticketList = ticketRepo.findByUserUsername(username);
+
+        } else if (title == null) {
+            ticketList = ticketRepo.findByBodyContainingIgnoreCase(body);
+        } else {
+
+            ticketList = ticketRepo.findByTitleContainingIgnoreCase(title);
+        }
+        model.addAttribute("list", ticketList);
+
+        return "/user/home_user";
     }
 
     @GetMapping("/{id}")

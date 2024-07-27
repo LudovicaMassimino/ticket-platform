@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.ludo.ticket_platform.model.Note;
 import it.ludo.ticket_platform.model.Ticket;
+import it.ludo.ticket_platform.model.User;
 import it.ludo.ticket_platform.repository.CategoryRepo;
 import it.ludo.ticket_platform.repository.NoteRepo;
 import it.ludo.ticket_platform.repository.TicketRepo;
@@ -79,10 +82,10 @@ public class TicketController {
             ticketList = ticketRepo.findByUserUsername(username);
 
         } else if (title == null) {
-            ticketList = ticketRepo.findByBodyContainingIgnoreCase(body);
+            ticketList = ticketRepo.findByUserUsernameAndBodyContainingIgnoreCase(username , body);
         } else {
 
-            ticketList = ticketRepo.findByTitleContainingIgnoreCase(title);
+            ticketList = ticketRepo.findByUserUsernameAndTitleContainingIgnoreCase(username , title);
         }
         model.addAttribute("list", ticketList);
 
@@ -146,9 +149,18 @@ public class TicketController {
             return "/common/createNote";
         }
 
-        Ticket ticket = ticketRepo.getReferenceById(id);
-        note.setTicket(ticket);
-        note.setNote_date(LocalDateTime.now());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Optional<User> user = userRepo.findByUsername(username);
+        User loggedUser = user.get();
+
+        Ticket ticket = ticketRepo.getReferenceById(id)
+;
+        note.setTicket(ticket)
+;
+        note.setNote_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        note.setAuthor(loggedUser);
         noteRepo.save(note);
 
         return "redirect:/ticket/" + id;

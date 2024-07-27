@@ -55,11 +55,11 @@
                                     <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
                                 </ul>
                             </div>
-                            <label for="author" class="form-label">Autore </label>
+                            <!-- <label for="author" class="form-label">Autore </label>
                             <select id="author" name="author" th:field="*{author}">
                                 <option th:each="author : ${author}" th:value="${author.id}" th:text="${author.name}">
                                 </option>
-                            </select>
+                            </select> -->
                         </div>
                         <button type="submit" class="btn btn-primary">Inserisci nota</button>
                     </form>

@@ -9,17 +9,17 @@
     <title>DETTAGLIO</title>
 
     <style>
-         .navbar {
-        display: flex;
-        align-items: center;
-        height: 70px;
-    }
+        .navbar {
+            display: flex;
+            align-items: center;
+            height: 70px;
+        }
 
 
-    .nav-bg {
-        background: #23074d;
-        background: linear-gradient(to right, #5657a4, #090a5b);
-    }
+        .nav-bg {
+            background: #23074d;
+            background: linear-gradient(to right, #5657a4, #090a5b);
+        }
 
         .DA_FARE {
             background-color: rgb(255, 52, 52);
@@ -49,6 +49,25 @@
                     <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px"
                         height="120px" />
                 </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHamburger"
+                    aria-controls="navbarHamburger" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="nav justify-content-end collapse navbar-collapse" id="navbarHamburger">
+                    <ul class="navbar-nav">
+                        <li>
+                            <form class="d-flex ms-auto" role="search">
+                                <input type="text" name="title" class="form-control me-2 bg-tertiary border-0 rounded"
+                                    placeholder="Cerca per titolo" aria-label="Cerca per titolo">
+                                <button class="btn btn-tertiary rounded text-white" type="submit">Vai</button>
+                            </form>
+                            <form class="d-flex my-2 ms-auto" role="search">
+                                <input type="text" name="body" class="form-control me-2 bg-tertiary border-0 rounded"
+                                    placeholder="Cerca per contenuto" aria-label="Cerca per contenuto">
+                                <button class="btn btn-tertiary rounded text-white" type="submit">Vai</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>

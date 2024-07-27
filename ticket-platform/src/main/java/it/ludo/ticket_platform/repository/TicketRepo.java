@@ -22,4 +22,8 @@ public interface TicketRepo extends JpaRepository<Ticket, Integer> {
     List<Ticket> findByStatus(Ticket.Status status);
 
     List<Ticket> findByUserUsername(String username);
+
+    List<Ticket> findByUserUsernameAndBodyContainingIgnoreCase(String username, String body);
+
+    List<Ticket> findByUserUsernameAndTitleContainingIgnoreCase(String username, String title);
 }

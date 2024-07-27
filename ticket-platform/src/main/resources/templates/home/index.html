@@ -11,7 +11,7 @@
     <style>
         .navbar {
             display: flex;
-            align-items: center;
+
             height: 70px;
         }
 
@@ -47,7 +47,7 @@
     <header></header>
     <!-- navbar -->
 
-    <nav class="navbar navbar-expand navbar-dark nav-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
         <div class="container-fluid">
             <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
                 <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px" height="120px" />
@@ -56,12 +56,24 @@
                 aria-controls="navbarHamburger" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="nav justify-content-end collapse navbar-collapse" id="navbarHamburger">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/home}">Home</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex text-end">
+
+                        <li>
+                            <form class="d-flex ms-auto w-25 opacity-75" role="search">
+                                <input type="text" name="title" class="form-control me-2 bg-tertiary border-0 rounded"
+                                    placeholder="Cerca per titolo" aria-label="Cerca per titolo">
+                                <button class="btn btn-outline-white rounded" type="submit">Vai</button>
+                            </form>
+                            <form class="d-flex my-2 ms-auto w-25 opacity-75" role="search">
+                                <input type="text" name="body" class="form-control me-2 bg-tertiary border-0 rounded"
+                                    placeholder="Cerca per contenuto" aria-label="Cerca per contenuto">
+                                <button class="btn btn-outline-white rounded" type="submit">Vai</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -78,7 +90,8 @@
                 </div>
                 <div class="d-flex justify-content-center pt-5">
                     <a th:href="@{|/ticket/admin|}" type="button" class="btn-admin p-3 rounded mx-3 fs-4">ADMIN</a>
-                    <a th:href="@{|/ticket/user|}" type="button" class="btn-operatore p-3 rounded mx-3 fs-4">OPERATORE</a>
+                    <a th:href="@{|/ticket/user|}" type="button"
+                        class="btn-operatore p-3 rounded mx-3 fs-4">OPERATORE</a>
                 </div>
             </div>
         </div>

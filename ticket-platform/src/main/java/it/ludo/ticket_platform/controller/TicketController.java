@@ -1,6 +1,7 @@
 package it.ludo.ticket_platform.controller;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.ludo.ticket_platform.model.Note;
 import it.ludo.ticket_platform.model.Ticket;
+import it.ludo.ticket_platform.repository.CategoryRepo;
 import it.ludo.ticket_platform.repository.NoteRepo;
 import it.ludo.ticket_platform.repository.TicketRepo;
+import it.ludo.ticket_platform.repository.UserRepo;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +34,12 @@ public class TicketController {
 
     @Autowired
     NoteRepo noteRepo;
+
+    @Autowired
+    UserRepo userRepo;
+
+    @Autowired
+    CategoryRepo categoryRepo;
 
     @GetMapping("/admin")
     public String index(Model model, @RequestParam(name = "title", required = false) String title,
@@ -119,4 +128,30 @@ public class TicketController {
         return "redirect:/ticket/" + id;
     }
 
+    @GetMapping("/admin/create")
+    public String create(Model model) {
+
+        model.addAttribute("ticket", new Ticket());
+        model.addAttribute("users", userRepo.findAll());
+        model.addAttribute("category", categoryRepo.findAll());
+
+        return "/admin/create";
+    }
+
+    @PostMapping("/admin/create")
+    public String store(@Valid @ModelAttribute("ticket") Ticket ticketForm, BindingResult bindingresult, Model model) {
+
+        if (bindingresult.hasErrors()) {
+
+            return "/admin/create";
+        }
+
+        ticketForm.setTicket_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        ticketForm.setStatus(Ticket.Status.DA_FARE);
+
+        ticketRepo.save(ticketForm);
+
+        return "redirect:/ticket/admin";
+
+    }
 }

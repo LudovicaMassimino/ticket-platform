@@ -36,6 +36,7 @@
         .fixed-size-card {
             min-height: 300px;
         }
+
     </style>
 
 </head>
@@ -43,11 +44,10 @@
 <body>
     <!-- navbar -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
-            <div class="container-fluid my-o py-0">
-                <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
-                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px"
-                        height="120px" />
+        <nav class="navbar navbar-expand-md nav-bg">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/home}">
+                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="300"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHamburger"
                     aria-controls="navbarHamburger" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,7 +130,7 @@
                             <ul>
                                 <li class="d-flex justify-content-between fs-6">
                                     <span th:text="${note.author.username}"></span>
-                                    <span th:text="${note.note_date}"></span>
+                                    <span th:text="${note.noteDate}"></span>
                                 </li>
                                 <li th:text="${note.name}"></li>
                             </ul>

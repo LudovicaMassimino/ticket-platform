@@ -12,7 +12,7 @@
         .navbar {
             display: flex;
 
-            height: 70px;
+            height: 100px;
         }
 
 
@@ -47,43 +47,20 @@
     <header></header>
     <!-- navbar -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
+    <nav class="navbar navbar-expand-md nav-bg">
         <div class="container-fluid">
-            <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
-                <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px" height="120px" />
+            <a class="navbar-brand" th:href="@{/home}">
+                <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="300" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHamburger"
-                aria-controls="navbarHamburger" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="nav justify-content-end collapse navbar-collapse" id="navbarHamburger">
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex text-end">
-
-                        <li>
-                            <form class="d-flex ms-auto w-25 opacity-75" role="search">
-                                <input type="text" name="title" class="form-control me-2 bg-tertiary border-0 rounded"
-                                    placeholder="Cerca per titolo" aria-label="Cerca per titolo">
-                                <button class="btn btn-outline-white rounded" type="submit">Vai</button>
-                            </form>
-                            <form class="d-flex my-2 ms-auto w-25 opacity-75" role="search">
-                                <input type="text" name="body" class="form-control me-2 bg-tertiary border-0 rounded"
-                                    placeholder="Cerca per contenuto" aria-label="Cerca per contenuto">
-                                <button class="btn btn-outline-white rounded" type="submit">Vai</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </nav>
     </header>
 
     <!-- main -->
 
-    <main class="d-flex align-items-center justify-content-center" style="min-height: 125vh;">
-        <div class="container col-5 py-5">
-            <div class="fs-2 py-5b">
+    <main class="d-flex align-items-center justify-content-center" style="min-height: 90vh;">
+        <div class="container col-5">
+            <div class="fs-2">
                 <div class="text-center">
                     <h1>Benvenuto nell'Assistenza Clienti di <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo"
                             class="navbar-logo " width="350px" height="120px" /></h1>

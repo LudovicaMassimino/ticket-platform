@@ -1,6 +1,5 @@
 package it.ludo.ticket_platform.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,8 +26,8 @@ public class Note {
     @Column(length = 1500)
     private String name;
 
-    @Column(nullable = false)
-    private LocalDateTime note_date;
+    @Column(name = "note_date" , nullable = false)
+    private LocalDateTime noteDate;
 
     @ManyToOne
     @JoinColumn(name = "ticket_id" , nullable = false)
@@ -74,11 +73,11 @@ public class Note {
         this.ticket = ticket;
     }
 
-    public LocalDateTime getNote_date() {
-        return note_date;
+    public LocalDateTime getNoteDate() {
+        return noteDate;
     }
 
-    public void setNote_date(LocalDateTime note_date) {
-        this.note_date = note_date;
+    public void setNoteDate(LocalDateTime noteDate) {
+        this.noteDate = noteDate;
     }
 }

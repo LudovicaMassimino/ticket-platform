@@ -82,20 +82,52 @@ public class TicketController {
             ticketList = ticketRepo.findByUserUsername(username);
 
         } else if (title == null) {
-            ticketList = ticketRepo.findByUserUsernameAndBodyContainingIgnoreCase(username , body);
+            ticketList = ticketRepo.findByUserUsernameAndBodyContainingIgnoreCase(username, body);
         } else {
 
-            ticketList = ticketRepo.findByUserUsernameAndTitleContainingIgnoreCase(username , title);
+            ticketList = ticketRepo.findByUserUsernameAndTitleContainingIgnoreCase(username, title);
         }
         model.addAttribute("list", ticketList);
 
         return "/user/home_user";
     }
 
+    @GetMapping("/admin/create")
+    public String create(Model model) {
+
+        model.addAttribute("ticket", new Ticket());
+        model.addAttribute("users", userRepo.findAll());
+        model.addAttribute("category", categoryRepo.findAll());
+
+        return "/admin/create";
+    }
+
+    @PostMapping("/admin/create")
+    public String store(@Valid @ModelAttribute("ticket") Ticket ticketForm, BindingResult bindingresult, Model model) {
+        // TODO: process POST request
+
+        if (bindingresult.hasErrors()) {
+
+            return "/admin/create";
+        }
+
+        ticketForm.setTicket_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        ticketForm.setStatus(Ticket.Status.DA_FARE);
+
+        ticketRepo.save(ticketForm);
+
+        return "redirect:/ticket/admin";
+
+    }
+
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
+        Ticket ticket = ticketRepo.getReferenceById(id);
+        model.addAttribute("ticket", ticket);
 
-        model.addAttribute("ticket", ticketRepo.getReferenceById(id));
+        // // ordinare per data e ora
+        // List<Note> note = noteRepo.findByTicketIdOrderByNoteDateDesc(ticket.getId());
+        // model.addAttribute("note", note);
 
         return "/common/info";
     }
@@ -116,7 +148,8 @@ public class TicketController {
 
             return "/common/edit";
         }
-        Ticket existingTicket = ticketRepo.getReferenceById(id);
+        Ticket existingTicket = ticketRepo.getReferenceById(id)
+;
 
         existingTicket.setTitle(ticketUpdate.getTitle());
         existingTicket.setBody(ticketUpdate.getBody());
@@ -129,8 +162,10 @@ public class TicketController {
 
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") Integer id) {
+        // TODO: process POST request
 
-        ticketRepo.deleteById(id);
+        ticketRepo.deleteById(id)
+;
 
         return "redirect:/ticket/admin";
     }
@@ -159,37 +194,11 @@ public class TicketController {
 ;
         note.setTicket(ticket)
 ;
-        note.setNote_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        note.setId(null);
+        note.setNoteDate(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         note.setAuthor(loggedUser);
         noteRepo.save(note);
 
         return "redirect:/ticket/" + id;
-    }
-
-    @GetMapping("/admin/create")
-    public String create(Model model) {
-
-        model.addAttribute("ticket", new Ticket());
-        model.addAttribute("users", userRepo.findAll());
-        model.addAttribute("category", categoryRepo.findAll());
-
-        return "/admin/create";
-    }
-
-    @PostMapping("/admin/create")
-    public String store(@Valid @ModelAttribute("ticket") Ticket ticketForm, BindingResult bindingresult, Model model) {
-
-        if (bindingresult.hasErrors()) {
-
-            return "/admin/create";
-        }
-
-        ticketForm.setTicket_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
-        ticketForm.setStatus(Ticket.Status.DA_FARE);
-
-        ticketRepo.save(ticketForm);
-
-        return "redirect:/ticket/admin";
-
     }
 }

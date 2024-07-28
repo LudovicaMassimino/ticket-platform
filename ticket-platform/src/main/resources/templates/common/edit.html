@@ -9,17 +9,17 @@
     <title>Modifica ticket</title>
 
     <style>
-         .navbar {
-        display: flex;
-        align-items: center;
-        height: 70px;
-    }
+        .navbar {
+            display: flex;
+            align-items: center;
+            height: 70px;
+        }
 
 
-    .nav-bg {
-        background: #23074d;
-        background: linear-gradient(to right, #5657a4, #090a5b);
-    }
+        .nav-bg {
+            background: #23074d;
+            background: linear-gradient(to right, #5657a4, #090a5b);
+        }
     </style>
 
 </head>
@@ -27,11 +27,10 @@
 <body>
     <!-- navbar -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
-            <div class="container-fluid my-o py-0">
-                <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
-                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="350px"
-                        height="120px" />
+        <nav class="navbar navbar-expand-md nav-bg">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/home}">
+                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="300" />
                 </a>
             </div>
         </nav>

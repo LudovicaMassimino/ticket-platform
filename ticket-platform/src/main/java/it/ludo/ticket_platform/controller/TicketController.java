@@ -98,13 +98,14 @@ public class TicketController {
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("users", userRepo.findAll());
         model.addAttribute("category", categoryRepo.findAll());
+        List<User> availableUsers = userRepo.findByStatusTrue();
+        model.addAttribute("availableUsers", availableUsers);
 
         return "/admin/create";
     }
 
     @PostMapping("/admin/create")
     public String store(@Valid @ModelAttribute("ticket") Ticket ticketForm, BindingResult bindingresult, Model model) {
-        // TODO: process POST request
 
         if (bindingresult.hasErrors()) {
 
@@ -148,8 +149,7 @@ public class TicketController {
 
             return "/common/edit";
         }
-        Ticket existingTicket = ticketRepo.getReferenceById(id)
-;
+        Ticket existingTicket = ticketRepo.getReferenceById(id);
 
         existingTicket.setTitle(ticketUpdate.getTitle());
         existingTicket.setBody(ticketUpdate.getBody());
@@ -162,11 +162,8 @@ public class TicketController {
 
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") Integer id) {
-        // TODO: process POST request
 
-        ticketRepo.deleteById(id)
-;
-
+        ticketRepo.deleteById(id);
         return "redirect:/ticket/admin";
     }
 
@@ -190,10 +187,8 @@ public class TicketController {
         Optional<User> user = userRepo.findByUsername(username);
         User loggedUser = user.get();
 
-        Ticket ticket = ticketRepo.getReferenceById(id)
-;
-        note.setTicket(ticket)
-;
+        Ticket ticket = ticketRepo.getReferenceById(id);
+        note.setTicket(ticket);
         note.setId(null);
         note.setNoteDate(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         note.setAuthor(loggedUser);

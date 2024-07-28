@@ -41,6 +41,7 @@ public class Ticket {
     @Column(nullable = false)
     private LocalDateTime ticket_date;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 

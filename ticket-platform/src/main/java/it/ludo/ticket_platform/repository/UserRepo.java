@@ -11,10 +11,6 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     // Metodo per trovare gli operatori disponibili
     List<User> findByStatusTrue();
-
-    // Metodo per contare i ticket "da fare" o "in corso" di un operatore usando
-    // metodo sql "IN" (incluso)
-    int countByIdAndTicketStatusIn(Integer userId, List<String> status);
 }
 
 

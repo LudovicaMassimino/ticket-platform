@@ -13,8 +13,8 @@
             align-items: center;
             height: 70px;
         }
-    
-    
+
+
         .nav-bg {
             background: #23074d;
             background: linear-gradient(to right, #5657a4, #090a5b);
@@ -23,13 +23,13 @@
 </head>
 
 <body>
-   
+
     <!-- navbar -->
     <header>
         <nav class="navbar navbar-expand-md nav-bg">
             <div class="container-fluid">
                 <a class="navbar-brand" th:href="@{/home}">
-                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="300"/>
+                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="300" />
                 </a>
             </div>
         </nav>
@@ -42,26 +42,34 @@
         <div class="container">
             <div class="row text-center mt-5 justify-content-start">
 
-                <div class="col-6 text-start">
+                <div class="col-4 text-start">
                     <h1>Profilo:</h1>
 
                     <form action="#" th:action="@{/operator/edit}" th:object="${user}" method="post">
                         <div>
-                            <label for="name">Nome:</label>
-                            <input type="text" id="name" th:field="*{name}" />
+                            <label for="name" class="form-label">Nome:</label>
+                            <input type="text" id="name" th:field="*{name}" class="form-control" />
                         </div>
-                        <div>
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" th:field="*{username}" />
+                        <div class="mb-5">
+                            <label for="username" class="form-label">Username:</label>
+                            <input type="text" id="username" th:field="*{username}" class="form-control" />
                         </div>
-                        <div>
-                            <label for="status">Stato:</label>
-                            <select id="status" th:field="*{status}">
-                                <option th:value="true">Attivo</option>
-                                <option th:value="false">Inattivo</option>
-                            </select>
+                        <div class="mb-5">
+                            <label for="status"></label>
+                            <div th:if="${errorMessage}" style="color: red;">
+                                <p th:text="${errorMessage}" class=""></p>
+                            </div>
+                            <div class="d-flex justify-content-start my-2 fs-4">
+                                <div class="form-check form-switch form-check-reverse">
+                                    <input th:field="*{status}" class="form-check-input" type="checkbox"
+                                        id="flexSwitchCheckReverse">
+                                    <label class="form-check-label" for="flexSwitchCheckReverse">Stato </label>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit">Salva modifiche</button>
+                        <div class="d-flex justify-content-center">
+                            <button class="d-flex justify-content-center rounded" type="submit">Salva modifiche</button>
+                        </div>
                     </form>
                 </div>
             </div>

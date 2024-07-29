@@ -61,6 +61,7 @@ public class OperatorController {
 
             existingUser.setName(userForm.getName());
             existingUser.setUsername(userForm.getUsername());
+            existingUser.setEmail(userForm.getEmail());
             existingUser.setStatus(userForm.isStatus());
 
             if (bindingResult.hasErrors()) {

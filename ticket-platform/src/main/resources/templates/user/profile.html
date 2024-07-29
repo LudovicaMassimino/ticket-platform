@@ -54,6 +54,10 @@
                             <label for="username" class="form-label">Username:</label>
                             <input type="text" id="username" th:field="*{username}" class="form-control" />
                         </div>
+                        <div>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" th:field="*{email}" class="form-control" />
+                        </div>
                         <div class="mb-5">
                             <label for="status"></label>
                             <div th:if="${errorMessage}" style="color: red;">

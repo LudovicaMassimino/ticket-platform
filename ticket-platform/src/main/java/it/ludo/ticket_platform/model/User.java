@@ -35,6 +35,11 @@ public class User {
     @Column (nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String email;
+
+    
+
     @Column(columnDefinition = "TINYINT(1)", nullable = false)
     private boolean status; // 0 = occupato , 1 = disponibile
 
@@ -47,6 +52,22 @@ public class User {
     private Set<Role> roles;
 
     // getter e setter
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Ticket> getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(List<Ticket> ticket) {
+        this.ticket = ticket;
+    }
 
     public Integer getId() {
         return id;

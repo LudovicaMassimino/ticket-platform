@@ -8,17 +8,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http)
             throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers("/home").permitAll()
                 .requestMatchers("/ticket/admin/**").hasAuthority("ADMIN")
-                .requestMatchers("/ticket/admin/**").hasAuthority("OPERATOR")
-                .requestMatchers("/ticket/{id}/**").hasAnyAuthority("ADMIN", "OPERATOR")
+                .requestMatchers("/ticket/user/**").hasAuthority("OPERATOR")
                 .requestMatchers("/operator/**").hasAuthority("OPERATOR")
-                .requestMatchers("/css/**", "/js/**", "/webjars/**", "logo/**")
+                .requestMatchers("/ticket/{id}/**").hasAnyAuthority("ADMIN", "OPERATOR")
+                .requestMatchers("/css/**", "/js/**", "/webjars/**", "img/**")
                 .permitAll()
                 .and()
                 .formLogin()

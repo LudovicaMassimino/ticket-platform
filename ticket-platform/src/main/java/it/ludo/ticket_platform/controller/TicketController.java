@@ -65,6 +65,12 @@ public class TicketController {
 
         model.addAttribute("list", ticketList);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Optional<User> currentUser = userRepo.findByUsername(username);
+        User user = currentUser.get();
+        model.addAttribute("user", user);
+
         return "/admin/home_admin";
     }
 
@@ -89,6 +95,11 @@ public class TicketController {
         }
         model.addAttribute("list", ticketList);
 
+        Optional<User> currentUser = userRepo.findByUsername(username);
+        User user = currentUser.get();
+        model.addAttribute("user", user);
+
+
         return "/user/home_user";
     }
 
@@ -98,8 +109,8 @@ public class TicketController {
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("users", userRepo.findAll());
         model.addAttribute("category", categoryRepo.findAll());
-        List<User> availableUsers = userRepo.findByStatusTrue();
-        model.addAttribute("availableUsers", availableUsers);
+        List<User> availableUser = userRepo.findByStatusTrue();
+        model.addAttribute("availableUser", availableUser);
 
         return "/admin/create";
     }
@@ -108,7 +119,10 @@ public class TicketController {
     public String store(@Valid @ModelAttribute("ticket") Ticket ticketForm, BindingResult bindingresult, Model model) {
 
         if (bindingresult.hasErrors()) {
-
+            model.addAttribute("category", categoryRepo.findAll());
+            List<User> availableUser = userRepo.findByStatusTrue();
+            model.addAttribute("availableUser", availableUser);
+    
             return "/admin/create";
         }
 
@@ -146,7 +160,7 @@ public class TicketController {
             Model model) {
 
         if (bindingresult.hasErrors()) {
-
+            model.addAttribute("status", Ticket.Status.values());
             return "/common/edit";
         }
         Ticket existingTicket = ticketRepo.getReferenceById(id);
@@ -175,8 +189,9 @@ public class TicketController {
     }
 
     @PostMapping("/{id}/createNote")
-    public String createNote(@PathVariable("id") Integer id, @Valid Note note, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+    public String createNote(@PathVariable("id") Integer id, @Valid Note note, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
             model.addAttribute("ticketId", id);
             return "/common/createNote";
         }

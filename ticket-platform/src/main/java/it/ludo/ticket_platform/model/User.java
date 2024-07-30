@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="user")
@@ -26,19 +27,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column ()
     private String name;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column(nullable = false , unique = true)
     private String username;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column (nullable = false)
     private String password;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column(nullable = false)
     private String email;
 
-    
+    @Column
+    private String foto;
 
     @Column(columnDefinition = "TINYINT(1)", nullable = false)
     private boolean status; // 0 = occupato , 1 = disponibile
@@ -52,6 +58,14 @@ public class User {
     private Set<Role> roles;
 
     // getter e setter
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public String getEmail() {
         return email;

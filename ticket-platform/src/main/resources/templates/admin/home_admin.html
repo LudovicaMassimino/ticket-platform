@@ -25,6 +25,16 @@
         background: #23074d;
         background: linear-gradient(to right, #5657a4, #090a5b);
     }
+
+    .stile-form input[type="text"],
+    .stile-form input[type="text"]::placeholder {
+        color: #1f2185;
+        border-color: #1f2185;
+    }
+
+    .stile-form button {
+        color: #1f2185;
+    }
 </style>
 
 </head>
@@ -33,31 +43,12 @@
 
     <!-- navbar -->
 
-   <header>
-    <nav class="navbar navbar-expand-md nav-bg">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/home}">
-                <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="300"/>
+    <header>
+        <nav class="navbar navbar-expand-md nav-bg">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/home}">
+                    <img th:src="@{/logo/logoBoolair3.gif}" alt="Logo" class="navbar-logo " width="300" />
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHamburger"
-                    aria-controls="navbarHamburger" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="nav justify-content-end collapse navbar-collapse" id="navbarHamburger">
-                    <ul class="navbar-nav">
-                        <li>
-                            <form class="d-flex ms-auto" role="search">
-                                <input type="text" name="title" class="form-control me-2 bg-tertiary border-0 rounded"
-                                    placeholder="Cerca per titolo" aria-label="Cerca per titolo">
-                                <button class="btn btn-tertiary rounded text-white" type="submit">Vai</button>
-                            </form>
-                            <form class="d-flex my-2 ms-auto" role="search">
-                                <input type="text" name="body" class="form-control me-2 bg-tertiary border-0 rounded"
-                                    placeholder="Cerca per contenuto" aria-label="Cerca per contenuto">
-                                <button class="btn btn-tertiary rounded text-white" type="submit">Vai</button>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </nav>
     </header>
@@ -69,8 +60,24 @@
         <div class="container">
             <div class="row mt-5 ">
                 <div class="col-lg-12 ">
-
-                    <h1>Lista ticket :</h1>
+                    <div class="d-flex justify-content-between">
+                        <h1>Lista ticket :</h1>
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <h5 style="color: #090a5b;"><i class="bi bi-funnel-fill"></i> Filtra per </h5>
+                                <form class="d-flex ms-auto stile-form" role="search">
+                                    <input type="text" name="title" class="form-control me-2 bg-tertiary rounded"
+                                        placeholder="Titolo" aria-label="Titolo">
+                                    <button class="btn btn-tertiary rounded " type="submit">Cerca</button>
+                                </form>
+                                <form class="d-flex my-2 ms-auto stile-form" role="search">
+                                    <input type="text" name="body" class="form-control me-2 bg-tertiary rounded"
+                                        placeholder="Contenuto" aria-label="Contenuto">
+                                    <button class="btn btn-tertiary rounded" type="submit">Cerca</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Table -->
 

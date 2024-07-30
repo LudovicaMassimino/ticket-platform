@@ -46,15 +46,15 @@
                     <h1>Profilo:</h1>
 
                     <form action="#" th:action="@{/operator/edit}" th:object="${user}" method="post">
-                        <div>
-                            <label for="name" class="form-label">Nome:</label>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome</label>
                             <input type="text" id="name" th:field="*{name}" class="form-control" />
                         </div>
-                        <div class="mb-5">
-                            <label for="username" class="form-label">Username:</label>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
                             <input type="text" id="username" th:field="*{username}" class="form-control" />
                         </div>
-                        <div>
+                        <div class="mb-5">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" id="email" th:field="*{email}" class="form-control" />
                         </div>

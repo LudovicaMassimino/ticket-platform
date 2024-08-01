@@ -1,0 +1,93 @@
+.navbar {
+    display: flex;
+    height: 100px;
+}
+
+.nav-bg {
+    background: #23074d;
+    background: linear-gradient(to right, #5657a4, #090a5b);
+}
+
+.stile-form input[type="text"],
+.stile-form input[type="text"]::placeholder {
+    color: #1f2185;
+    border-color: #abc9f3;
+}
+
+.stile-form button {
+    color: #1f2185;
+}
+
+.custom-card {
+    border-color: #0381fe58;
+    box-shadow: 5px 5px 10px #0381fe58;
+}
+
+.card-img-top {
+    display: block;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    background-color: #0381fe58;
+}
+
+.DA_FARE {
+    background-color: rgb(255, 52, 52);
+}
+
+.IN_CORSO {
+    background-color: rgb(246, 254, 88);
+}
+
+.COMPLETATO {
+    background-color: rgb(32, 198, 104);
+}
+
+.card-dettaglio {
+    height: 100%;
+}
+
+.text-no-note {
+    padding-left: 0%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.btn-margin {
+    margin: 100px;
+}
+
+.btn-admin {
+    color: #ffffff;
+    background-color: #090a5b;
+}
+
+.btn-operatore {
+    color: #ffffff;
+    background-color: #04D46A;
+}
+
+a.btn-admin,
+a.btn-operatore {
+    text-decoration: none;
+}
+
+.btn-outline-custom {
+    background-color: #1f2185;
+    color: #abc9f3;
+    font-weight: 500;
+    border-color: #abc9f3;
+    border-width: 2px;
+}
+
+.btn-outline-custom:hover {
+    color: #1f2185;
+    font-weight: bold;
+    background-color: #abc9f3;
+    border-color: #1f2185;
+    border-width: 2px;
+}
+
+.title-color {
+    color: #1f2185;
+}

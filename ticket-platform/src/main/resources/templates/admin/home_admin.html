@@ -15,7 +15,7 @@
 </head>
 
 <style>
-    
+
 </style>
 
 
@@ -23,9 +23,9 @@
 
 <body>
 
-     <!-- navbar -->
+    <!-- navbar -->
 
-     <header class="sticky-top">
+    <header class="sticky-top">
 
         <nav class="navbar navbar-expand-lg nav-bg">
             <div class="container-fluid">
@@ -42,9 +42,9 @@
         <div class="container">
             <div class="row my-5 justify-content-center">
 
-                 <!-- col sx card profilo -->
+                <!-- col sx card profilo -->
 
-                <div class="col-sm-5 col-lg-3">
+                <div class="col-sm-5 col-lg-3 me-5">
                     <div class="card custom-card my-5">
                         <div class="card-body">
                             <h4 class="text-center py-3 title-color">Il tuo Profilo</h4>
@@ -54,7 +54,8 @@
                             <div th:text="${user.username}" class="fs-5"></div>
                             <div th:text="${user.email}" class="mb-5 fs-5"></div>
                             <div class="text-center">
-                                <a th:href="@{/operator/edit}" class="btn btn-outline-custom mt-5 w-60">Modifica Profilo</a>
+                                <a th:href="@{/operator/edit}" class="btn btn-outline-custom mt-5 w-60">Modifica
+                                    Profilo</a>
                             </div>
                         </div>
                     </div>
@@ -62,32 +63,36 @@
 
                 <!-- col dx lista ticket -->
 
-                <div class="col-sm-12 col-lg-9">
+                <div class="col-sm-12 col-lg-8">
                     <div class="d-flex justify-content-between my-5">
                         <h1 class="title-color">Lista ticket</h1>
                         <div class="text-center">
-                            <a th:href="@{/ticket/admin/create}" class="btn btn-outline-custom mt-1 w-60">Aggiungi ticket</a>
+                            <a th:href="@{/ticket/admin/create}" class="btn btn-outline-custom mt-1 w-60">Aggiungi
+                                ticket</a>
                         </div>
-                        <div class="card border-0" style="width: 15rem; height: 10;">
-                            <div class="card-body">
-                                <h5 style="color: #090a5b;"><i class="bi bi-funnel-fill"></i> Filtra per </h5>
-                                <form class="d-flex ms-auto stile-form" role="search">
-                                    <input type="text" name="title" class="form-control me-2 bg-tertiary rounded"
-                                        placeholder="Titolo" aria-label="Titolo">
-                                    <button class="btn btn-tertiary rounded " type="submit">Cerca</button>
+                        <div class="card border-0" style="width: 12rem; height: auto;">
+                            <div class="card-body title-color">
+                                <h6 class="title-color"><i class="bi bi-funnel-fill"></i> Filtra per</h6>
+                                <form class="d-flex ms-auto" role="search">
+                                    <input type="text" name="title"
+                                        class="form-control me-2 bg-tertiary rounded form-filter" placeholder="Titolo"
+                                        aria-label="Titolo">
+                                    <button class="btn btn-filter" type="submit">Cerca</button>
                                 </form>
-                                <form class="d-flex my-2 ms-auto stile-form" role="search">
-                                    <input type="text" name="body" class="form-control me-2 bg-tertiary rounded"
+                                <form class="d-flex mt-2 ms-auto " role="search">
+                                    <input type="text" name="body"
+                                        class="form-control me-2 bg-tertiary rounded form-filter"
                                         placeholder="Contenuto" aria-label="Contenuto">
-                                    <button class="btn btn-tertiary rounded" type="submit">Cerca</button>
+                                    <button class="btn btn-filter" type="submit">Cerca</button>
                                 </form>
+                                <div class="fs-6">
+                                    <span>
+                                        <i class="bi bi-x title-color"></i>
+                                    </span>
+                                    <a th:href="@{/ticket/admin}" class="btn btn-filter p-0">Rimuovi filtri</a>
+                                </div>
                             </div>
-                            <div class="fs-6">
-                                <span>
-                                    <i class="bi bi-x"></i>
-                                </span>
-                                <a th:href="@{/ticket/user}" class=" btn"> Rimuovi filtri</a>
-                            </div>
+
                         </div>
                     </div>
 
@@ -98,7 +103,7 @@
                         <!-- Thead -->
 
                         <thead>
-                            <tr class="fs-4">
+                            <tr class="fs-5">
                                 <th scope="col">Data</th>
                                 <th scope="col">Titolo</th>
                                 <th scope="col">Contenuto</th>

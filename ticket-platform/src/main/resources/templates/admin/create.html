@@ -32,7 +32,7 @@
             <div class="row text-center my-5 justify-content-center">
 
                 <div class="col-6 text-start mt-5">
-                    <h1>Apri un nuovo ticket :</h1>
+                    <h1 class="title-color">Apri un nuovo ticket</h1>
 
                     <!-- form -->
 
@@ -40,9 +40,9 @@
 
                         <!-- titolo -->
 
-                        <div class="mb-3 mt-5">
-                            <label for="title" class="form-label">TITOLO</label>
-                            <input name="title" type="text" class="form-control" id="title"
+                        <div class="mb-3 mt-5 stile-form">
+                            <label for="title" class="form-label">Titolo</label>
+                            <input name="title" type="text" class="form-control stile-form" id="title"
                                 placeholder="Titolo del ticket" th:field="*{title}" th:errorClass="is-invalid">
                             <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
                                 <ul>
@@ -53,10 +53,10 @@
 
                         <!-- richiesta -->
 
-                        <div class="mb-5">
-                            <label for="body" class="form-label">RICHIESTA</label>
+                        <div class="mb-5 stile-form">
+                            <label for="body" class="form-label">Richiesta</label>
                             <div class="mb-3">
-                                <textarea class="form-control " placeholder="Scrivi la tua richiesta" id="body"
+                                <textarea class="form-control stile-form" placeholder="Scrivi la tua richiesta" id="body"
                                     th:field="*{body}" rows="8" maxlength="800" th:errorClass="is-invalid"></textarea>
                             </div>
                             <div th:if="${#fields.hasErrors('body')}" class="invalid-feedback d-block">
@@ -66,34 +66,34 @@
                             </div>
                         </div>
 
-                        <!-- operatore -->
+                        <div class="row mb-3 d-flex justify-content-between stile-form">
 
-                        <div class="mb-3 d-flex justify-content-between">
-                            <div class="col-sm-10 col-lg-5">
-                                <label for="availableUser" class="form-label w-50">Assegna a:</label>
-                                <select id="availableUser" th:field="*{user}" class="form-select">
-                                    <option th:each="user : ${availableUser}" th:value="${user.id}"
-                                        th:text="${user.username}"></option>
-                                </select>
-                            </div>
-                            <div class="col-sm-10 col-lg-5">
+                            <!-- categoria -->
+
+                            <div class="col-sm-10 col-lg-6 stile-form ">
                                 <label for="category" class="form-label w-50">Categoria </label>
-                                <select id="category" name="category" th:field="*{category.id}" class="form-select">
+                                <select id="category" name="category" th:field="*{category.id}" class="form-select stile-form mb-4">
                                     <option th:each="category : ${category}" th:value="${category.id}"
                                         th:text="${category.name}"></option>
                                 </select>
                             </div>
+
+                            <!-- operatore -->
+
+                            <div class="col-sm-7 col-lg-6">
+                                <label for="availableUser" class="form-label w-50">Assegna a:</label>
+                                <select id="availableUser" th:field="*{user}" class="form-select stile-form">
+                                    <option th:each="user : ${availableUser}" th:value="${user.id}"
+                                        th:text="${user.username}"></option>
+                                </select>
+                            </div>
                         </div>
-
-                        <!-- categoria -->
-
-
 
                         <!-- Invia -->
 
                         <div class="d-flex justify-content-center">
                             <button class="d-flex justify-content-center rounded btn btn-outline-custom mt-5 w-65 fs-5"
-                                type="submit">Invia</button>
+                                type="submit">Inserisci</button>
                         </div>
                     </form>
                 </div>

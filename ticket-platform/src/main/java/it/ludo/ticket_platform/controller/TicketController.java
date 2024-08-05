@@ -155,7 +155,7 @@ public class TicketController {
     }
 
     @PostMapping("/{id}/edit")
-    public String Update(@PathVariable("id") Integer id, @Valid @ModelAttribute("ticket") Ticket ticketUpdate,
+    public String Update(@PathVariable("id") Integer id, @Valid @ModelAttribute("ticket") Ticket ticketForm,
             BindingResult bindingresult,
             Model model) {
 
@@ -165,9 +165,9 @@ public class TicketController {
         }
         Ticket existingTicket = ticketRepo.getReferenceById(id);
 
-        existingTicket.setTitle(ticketUpdate.getTitle());
-        existingTicket.setBody(ticketUpdate.getBody());
-        existingTicket.setStatus(ticketUpdate.getStatus());
+        existingTicket.setTitle(ticketForm.getTitle());
+        existingTicket.setBody(ticketForm.getBody());
+        existingTicket.setStatus(ticketForm.getStatus());
 
         ticketRepo.save(existingTicket);
 

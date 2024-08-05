@@ -35,9 +35,9 @@
                     <h1 class="title-color">Crea una nuova nota</h1>
 
                     <form th:action="@{/ticket/{id}/createNote(id=${ticketId})}" th:object="${note}" method="post">
-                        <div class="mb-3 mt-5">
+                        <div class="mb-3 mt-5 text-start">
                             <label for="name" class="form-label"></label>
-                            <textarea class="form-control stile-form" id="name" name="name" th:field="*{name}" rows="5"></textarea>
+                            <textarea class="form-control stile-form" id="name" name="name" th:field="*{name}" rows="5" th:errorClass="is-invalid"></textarea>
                             <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
                                 <ul>
                                     <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>

@@ -40,8 +40,8 @@
 
                         <!-- titolo -->
 
-                        <div class="mb-3 mt-5 stile-form">
-                            <label for="title" class="form-label">Titolo</label>
+                        <div class="mb-3 mt-5">
+                            <label for="title" class="form-label stile-form">Titolo</label>
                             <input name="title" type="text" class="form-control stile-form" id="title"
                                 placeholder="Titolo del ticket" th:field="*{title}" th:errorClass="is-invalid">
                             <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
@@ -56,8 +56,9 @@
                         <div class="mb-5 stile-form">
                             <label for="body" class="form-label">Richiesta</label>
                             <div class="mb-3">
-                                <textarea class="form-control stile-form" placeholder="Scrivi la tua richiesta" id="body"
-                                    th:field="*{body}" rows="8" maxlength="800" th:errorClass="is-invalid"></textarea>
+                                <textarea class="form-control stile-form" placeholder="Scrivi la tua richiesta"
+                                    id="body" th:field="*{body}" rows="8" maxlength="800"
+                                    th:errorClass="is-invalid"></textarea>
                             </div>
                             <div th:if="${#fields.hasErrors('body')}" class="invalid-feedback d-block">
                                 <ul>
@@ -72,7 +73,8 @@
 
                             <div class="col-sm-10 col-lg-6 stile-form ">
                                 <label for="category" class="form-label w-50">Categoria </label>
-                                <select id="category" name="category" th:field="*{category.id}" class="form-select stile-form mb-4">
+                                <select id="category" name="category" th:field="*{category.id}"
+                                    class="form-select stile-form mb-4">
                                     <option th:each="category : ${category}" th:value="${category.id}"
                                         th:text="${category.name}"></option>
                                 </select>
@@ -100,5 +102,8 @@
             </div>
         </div>
 
-
     </main>
+
+</body>
+
+</html>

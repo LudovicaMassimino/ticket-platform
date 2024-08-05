@@ -13,32 +13,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
-    // @Bean
-    // SecurityFilterChain filterChain(HttpSecurity http)
-    //         throws Exception {
-    //     http.authorizeHttpRequests()
-    //             .requestMatchers("/home").permitAll()
-    //             .requestMatchers("/ticket/admin/**").hasAuthority("ADMIN")
-    //             .requestMatchers("/ticket/user/**").hasAuthority("OPERATOR")
-    //             .requestMatchers("/operator/**").hasAnyAuthority("ADMIN", "OPERATOR")
-    //             .requestMatchers("/ticket/{id}/**").hasAnyAuthority("ADMIN", "OPERATOR")
-    //             .requestMatchers("/css/**", "/js/**", "/webjars/**", "img/**")
-    //             .permitAll()
-    //             .and()
-    //             .formLogin()
-    //             .and()
-    //             .logout()
-    //             .and().exceptionHandling();
-
-    //     return http.build();
-    // }
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
                 .authorizeHttpRequests(request -> request
-                        // rotte accessibili a tutti
+        
                         .requestMatchers("/login", "/home", "/resources/**", "/logout", "/api/**", "img/**", "/css/**")
                         .permitAll()
                         .requestMatchers("/ticket/admin/**").hasAuthority("ADMIN")
@@ -54,8 +34,9 @@ public class SecurityConfiguration {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/logout-success")
                         .permitAll())
+                // Configura la pagina di errore per accesso negato
                 .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .accessDeniedPage("/403")); // Configura la pagina di errore per accesso negato
+                        .accessDeniedPage("/403"));
 
         return http.build();
     }

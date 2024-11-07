@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TicketPlatformApplication<ticket-platform>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.ludo.ticket_platform.TicketPlatformApplication",
+            "projectName": "ticket-platform",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
